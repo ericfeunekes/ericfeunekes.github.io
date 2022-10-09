@@ -15,6 +15,6 @@ def clean(c, src="./blog"):
 
 @task(pre=[build, docs_folder], post=[clean])
 def release(c):
+    c.run('rm -r ./docs/*')
     c.run('mv ./blog/_build/html/* ./docs')
     c.run('touch ./docs/.nojekyll')
-    
