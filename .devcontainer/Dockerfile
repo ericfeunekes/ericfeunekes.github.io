@@ -28,3 +28,4 @@ USER jovyan
 RUN curl -sSLk https://install.python-poetry.org | python3 -
 ENV PATH="/home/jovyan/.local/bin:${PATH}"
 RUN poetry --version
+RUN pip install tox

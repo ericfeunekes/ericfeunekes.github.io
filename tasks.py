@@ -17,4 +17,4 @@ def clean(c, src="./blog"):
 def release(c):
     c.run('rm -r ./docs/*')
     c.run('mv ./blog/_build/html/* ./docs')
-    c.run('touch ./docs/.nojekyll')
+    c.run('')

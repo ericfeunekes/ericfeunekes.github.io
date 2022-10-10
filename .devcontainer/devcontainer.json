@@ -32,13 +32,15 @@
 				"ms-toolsai.jupyter",
 				"kiteco.kite",
 				"matangover.mypy",
-				"ms-python.vscode-pylance"
+				"ms-python.vscode-pylance",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"VisualStudioExptTeam.intellicode-api-usage-examples"
 			]
 		}
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+	// "postCreateCommand": "curl -sSLk https://install.python-poetry.org | python3 -",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "jovyan"
