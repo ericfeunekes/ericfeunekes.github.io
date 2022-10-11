@@ -327,17 +327,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">httpx</span>
-<span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section class="tex2jax_ignore mathjax_ignore" id="why-use-callables-in-functional-programming">
+  <section class="tex2jax_ignore mathjax_ignore" id="why-use-callables-in-functional-programming">
 <h1>Why use callables in Functional Programming?<a class="headerlink" href="#why-use-callables-in-functional-programming" title="Permalink to this headline">#</a></h1>
 <p>The more I learn about Functional Programming (<strong>FP</strong>) the more I like it. I find it much code written in a more FP style much easier to debug and undertand. This post discusses something I first learned about in <span class="xref myst">Grokking Simplicity</span>: passing callables to a function, rather than calling the sub-function directly. I didn’t understand why passing the callable is a much better approach, until I came across it myself.</p>
 <p>TLDR: it’s more modular, and easier to test.</p>
