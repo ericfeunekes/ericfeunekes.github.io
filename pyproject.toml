@@ -10,6 +10,7 @@ packages = [{include = "ericfeunekes"}]
 python = "^3.10"
 httpx = "^0.23.0"
 pandas = "^1.5.0"
+pydantic = "^1.10.2"
 
 
 [tool.poetry.group.format.dependencies]
