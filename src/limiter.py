@@ -6,6 +6,7 @@ class Limit(BaseModel):
     period: conint(gt=0) = int(60e9) #type: ignore
 
     _times_released: list | None
+    _current_available: int
 
     class Config:
         underscore_attrs_are_private = True
@@ -18,11 +19,6 @@ class Limit(BaseModel):
         self._current_available = self.max_calls
     
     def acquire(self):
-        pass
-
-    
-    def acquire(self):
-
         pass
     
     def has_capacity(self):
