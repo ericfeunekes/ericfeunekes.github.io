@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Callable, Tuple, TypedDict
 import httpx
 import asyncio
 
@@ -23,31 +23,43 @@ async def get_url(
     response.raise_for_status()
     return response
 
-
+class GetterArgs(TypedDict):
+    url: str
+    client: httpx.AsyncClient
+    limiter: asyncio.Semaphore | None
+    
 async def get_response(
-    url: str,
-    client: httpx.AsyncClient,
-    limiter: asyncio.Semaphore = None,
+    getter: Callable,
+    getter_args: GetterArgs,
     retries: int = 10,
+    current_try: int = 0
 ) -> httpx.Response:
+    '''Handles errors that are returned from `get_url`
+    
+    Parameters
+    ----------
+    getter : Callable
+        the function to use to get the data
+    getter_args : GetterArgs
+        the arguments to be passed to `get_url`
+    retries : int
+        the number of times to retry a call, for calls that should be retried
 
+    Returns
+    -------
+    httpx.Response
+        the response from the url
+    '''
     try:
-        response: httpx.Response = await get_url(
-            url=url, client=client, limiter=limiter
-        )
+        response: httpx.Response = await getter(**getter_args)
     except httpx.HTTPStatusError as e:
-        code = response.status_code
+        code = e.response.status_code
         if code == 429 or (code >= 100 and code < 200):
-            if "try_count" not in locals():
-                try_count = 1
-            else:
-                try_count += 1
-            if try_count >= retries and retries >= 0:
+            if current_try >= retries or retries <= 0:
                 print("Max retries exceeded for 429 error")
                 raise e
-            response = await get_response(
-                url=url, client=client, limiter=limiter, retries=retries
-            )
+            current_try += 1
+            response = await get_response(getter=getter, getter_args=getter_args, retries=retries, current_try=current_try)
         else:
             raise e
         # TODO: account for other error codes; e.g. redirections

@@ -6,7 +6,7 @@ import pytest
 from hypothesis import given, settings
 from hypothesis.strategies import integers
 
-from src.getting import get_url
+from src.getting import get_response, get_url
 
 
 class TestGet_URL:
@@ -62,3 +62,23 @@ class TestGet_URL:
             for i in range(len(times_np))
         ]
         assert np.max(num_calls) == 3
+
+
+class TestGetResponse:
+    @pytest.mark.asyncio
+    @settings(deadline=1000, max_examples=20)
+    @given(retries = integers(max_value=15))
+    async def test_429_error(self, retries):
+        count_tries = 0
+        async def mock_getter():
+            nonlocal count_tries
+            count_tries += 1
+            async with httpx.AsyncClient() as client:
+                resp = await client.get("http://httpbin.org/status/429")
+            resp.raise_for_status()
+        with pytest.raises(httpx.HTTPError):
+            await get_response(getter=mock_getter, getter_args={}, retries=retries)
+        # A negative retry value just means don't retry
+        retries = 0 if retries < 0 else retries
+        # Takeaway one to account for the first try
+        assert count_tries - 1 == retries
