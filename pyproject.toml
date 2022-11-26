@@ -15,6 +15,7 @@ pendulum = "^2.1.2"
 matplotlib = "^3.6.1"
 plotly = "^5.10.0"
 aiochan = "^0.2.6"
+aioburst = "^0.2.0"
 
 
 [tool.poetry.group.format.dependencies]

@@ -1,4 +1,16 @@
 [[package]]
+name = "aioburst"
+version = "0.2.0"
+description = "A library to optimize the speed of rate limited async calls."
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+pendulum = ">=2.1.2,<3.0.0"
+pydantic = ">=1.10.2,<2.0.0"
+
+[[package]]
 name = "aiochan"
 version = "0.2.6"
 description = "CSP-style concurrency for Python"
@@ -2150,9 +2162,13 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "41b2158780be57dd7c09b547cd0db4d3d42b560c16e0e14e9e714d469a33d1eb"
+content-hash = "769ec759136b85d95ea99b6741af509f7d47a597e969674aa2099593bf7911bd"
 
 [metadata.files]
+aioburst = [
+    {file = "aioburst-0.2.0-py3-none-any.whl", hash = "sha256:0e036e68e504b8031ebfe260bb66ac8d8aaff4c39f5f4332cf52c814109da8b1"},
+    {file = "aioburst-0.2.0.tar.gz", hash = "sha256:29c7e3289d7e935e974009a846a8da55fefa45214780a15949517fabf0e4aad2"},
+]
 aiochan = [
     {file = "aiochan-0.2.6-py3-none-any.whl", hash = "sha256:1ad09df21cab87678f52e74da637ea5b495ce17074a6ece02e1686b5f4f8b434"},
     {file = "aiochan-0.2.6.tar.gz", hash = "sha256:f1eac2c2f3fcfcd2dc347c2f67a4d68daabe38a76e79822b622bbb1a8e497455"},
