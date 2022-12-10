@@ -14,7 +14,7 @@ The topic we are looking for come after <h3 class="hansard3> containing the text
 To create the correct bound you just need to find the next tag that is <h3> or higher.
 """
 #%%
-from bs4 import BeautifulSoup
+from parsel import Selector
 from pathlib import Path
 import json
 import pandas as pd
@@ -29,11 +29,9 @@ def load_raw_html_from_file(filename: Path):
     """Loads the raw html from a file"""
     return filename.read_text()
 
-def extract_speeches_from_html(html):
-    """Extracts the speeches from the html"""
-    soup = BeautifulSoup(html, "lxml")
-    speeches = []
-    for speech in soup.find_all("div", class_="hansard"):
-        speeches.append(speech)
-    return speeches
+
+# %%
+html = load_raw_html_from_file(HTML_FILES[0])
+sel = Selector(html)
+header = sel.xpath(f"//h3[text()='{TEXT}']")
 # %%
