@@ -2,3 +2,4 @@ blog/_build/*
 .hypothesis
 .mypy_cache
 .pytest_cache
+*.pyc
