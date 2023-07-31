@@ -4,5 +4,3 @@
 format: jb-book
 root: intro
 chapters:
-- file: posts/why-use-callables-in-functional-programming
-- file: posts/get-crossfit-data
